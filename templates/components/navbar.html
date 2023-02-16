@@ -1,0 +1,29 @@
+<nav class="navbar navbar-expand-lg bg-light rounded" aria-label="Eleventh navbar example">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Navbar</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample09" aria-controls="navbarsExample09" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarsExample09">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            {% for menu in session.menus %}
+                <li class="nav-item">
+                    <a class="nav-link" aria-current="page" href="{{ menu.1 }}">{{ menu.0 }}</a>
+                </li>
+            {% endfor %}          
+        </ul>
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="true">{{ session.username }}</a>
+                <ul class="dropdown-menu dropdown-menu-end">
+                  <li><a class="dropdown-item text-rigth" href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a></li>
+                </ul>
+                <div>
+                    <form id="logout-form" action="{{ url_for('logout') }}" method="POST" style="display: none;"></form>
+                </div>
+            </li>
+        </ul>
+      </div>
+    </div>
+  </nav>

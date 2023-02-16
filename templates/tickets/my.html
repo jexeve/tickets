@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+{% block title %}Tickets Creados {% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/parpadea.css') }}">
+{% endblock %}
+
+{% block content %}
+
+{% include 'components/navbar.html'%}
+
+<div class="row my-3">
+    <div class="col text-center">
+        <h4>Tickets Creados</h4>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-7 border-end">
+        {% if data.tickets.total == 0 %}
+            {% include 'components/no-info.html'%}
+        {% else %}
+            {% include 'components/info.html' %}
+        {% endif %}        
+    </div>
+    <div class="col-5">
+        {% include 'components/crea-ticket.html' %}
+    </div>
+</div>
+
+{% endblock %}

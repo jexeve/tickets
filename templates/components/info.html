@@ -1,0 +1,27 @@
+{% for ticket in data.tickets.data %}
+    <div class="card border-0">
+        <div class="card-header bg-transparent border-0 pb-0">
+            <div class="row">
+                <div class="col">
+                    <p class="text-start fw-bold h-5">{{ ticket.0 }}</p>
+                </div>
+                <div class="col">
+                    {% if ticket.3 == 'P' %}
+                        <p class="text-end fw-bold h-5 text-danger parpadea">ABIERTO</p>
+                    {% else %}
+                        <p class="text-end fw-bold h-5 text-success">CERRADO</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        <div class="card-body py-0 border-0">
+            <p class="card-text">
+                {{ ticket.1 }}
+            </p>
+        </div>
+        <div class="card-footer mt-0 text-end border-top-0 border-end-0 border-start-0 border-bottom bg-transparent" style="border-radius: 0;">
+            <p class="text-muted text-end"><small>{{ ticket.2 }}</small></p>
+            <a href="/ticket/{{ ticket.4 }}" class="btn btn-sm btn-success">Detalles</a>
+        </div>
+    </div>
+{% endfor %}

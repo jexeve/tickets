@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+{% block title %}Acceso {% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/sign-in.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="text-center">
+    <main class="form-signin w-100 m-auto">
+        <form method="post">
+            <i class="fa-brands fa-microblog fa-2xl"></i>
+            <h1 class="h3 my-3 fw-normal">Tickets Tecnicos</h1>
+
+            <div class="form-floating">
+                <input type="text" class="form-control" id="username" name="username" placeholder="name@example.com">
+                <label for="username">Usuario</label>
+            </div>
+            <div class="form-floating">
+                <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+                <label for="password">Clave</label>
+            </div>
+
+            <button class="w-100 btn btn-lg btn-primary" type="submit">Ingrese</button>
+            <p class="mt-5 mb-3 text-muted">&copy; 2023</p>
+        </form>
+    </main>
+</div>
+{% endblock %}

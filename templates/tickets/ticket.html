@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+{% block title %}Tickets Pendientes {% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/parpadea.css') }}">
+{% endblock %}
+
+{% block content %}
+
+    {% include 'components/navbar.html'%}
+
+    <div class="row my-3">
+        <div class="col text-center">
+            <h4>Tickets Pendiente</h4>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-7 border-end">
+            {% include 'components/ticket.html' %}
+        </div>
+        <div class="col-5">
+            {% include 'components/crea-ticket.html' %}
+        </div>
+    </div>
+
+{% endblock %}
