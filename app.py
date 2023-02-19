@@ -4,6 +4,7 @@ from flask_session import Session
 import Controllers.MenuController as menu
 import Controllers.TecnicosController as tecnicos
 import Controllers.TicketsController as ticketsTecnicos
+import Controllers.CommentController as comentarios
 
 app = Flask(__name__)
 
@@ -35,12 +36,12 @@ def login():
 
 @app.route('/tickets', methods=['GET'])
 def tickets():
-    tickets = ticketsTecnicos.getTicketsForMe( session["username"])
+    tickets = ticketsTecnicos.getTicketsForMe( session["id"])
     data = {
             'tickets': {'data' : tickets, 'total': len(tickets) },
             'tecnicos': tecnicos.traeTecnicos()
         }
-    return render_template('./tickets/index.html',data=data)
+    return render_template('./tickets/index.html', data=data)
 
 @app.route('/crea/ticket', methods=['POST'])
 def creaTickets():
@@ -52,14 +53,23 @@ def mytickets():
     data = {'tecnicos': tecnicos.traeTecnicos()}
     tickets = ticketsTecnicos.getTicketsByMe( session["id"] )
     data = {'tickets': {'data' : tickets, 'total': len(tickets) } }
-    return render_template('./tickets/my.html',data=data)
+    return render_template('./tickets/my.html', data=data)
 
 @app.route('/ticket/<id>', methods=['GET'])
-def verTicket(id):
-    data = {'tecnicos': tecnicos.traeTecnicos()}
+def verTicket(id):    
     ticket = ticketsTecnicos.getTicket(id)
-    data = {'ticket': ticket}
+    comments = comentarios.get(id)
+    data = {
+        'ticket': ticket,
+        'comments' : {'data': comments, 'total': len(comments)},
+        'tecnicos': tecnicos.traeTecnicos()
+        }
     return render_template('./tickets/ticket.html', data=data)
+
+@app.route('/ticket/<id>', methods=['POST'])
+def actualizarTicket(id):
+    ticketsTecnicos.update(request.form, session["id"], id)
+    return redirect('/tickets')
 
 @app.route('/logout', methods=['POST'])
 def logout():

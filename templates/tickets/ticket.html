@@ -1,5 +1,5 @@
 {% extends "layout.html" %}
-{% block title %}Tickets Pendientes {% endblock %}
+{% block title %} Editar ticket {% endblock %}
 
 {% block css %}
     <link rel="stylesheet" href="{{ url_for('static', filename='css/parpadea.css') }}">
@@ -11,7 +11,7 @@
 
     <div class="row my-3">
         <div class="col text-center">
-            <h4>Tickets Pendiente</h4>
+            <h4>Editar ticket</h4>
         </div>
     </div>
 
@@ -20,8 +20,16 @@
             {% include 'components/ticket.html' %}
         </div>
         <div class="col-5">
-            {% include 'components/crea-ticket.html' %}
+            {% include 'components/edita-ticket.html' %}
         </div>
     </div>
 
+{% endblock %}
+
+{% block js %}
+    <script>
+        $(document).ready(function(){
+            $('input[name=text], textarea').css({resize: "none"})
+        });
+    </script>
 {% endblock %}

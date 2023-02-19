@@ -1,3 +1,37 @@
-<form action="">
-    <input type="text" value="{{ data.ticket.0 }}">
-</form>
+<div class="row">
+    <table class="table table-borderless">
+        <tr>
+            <td class="2"><h3 class="lead-5">{{ data.ticket.0 }}</h3></td>
+        </tr>
+        <tr>
+            <tr>
+                <td>
+                    <h6 class="lead-6">Creado por: <span class="text-muted">{{ data.ticket.6 }} {{ data.ticket.7 }}</span></h6>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <h6 class="lead-6">Creado el: <span class="text-muted">{{ data.ticket.2 }}</span></h6>
+                </td>
+            </tr>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <textarea class="form-control" name="" id="" cols="30" rows="5">{{ data.ticket.1 }}</textarea>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<hr>
+
+<div class="row">
+    <h6 class="text-muted">Comentarios</h6>
+    <div class="col mt-1">
+        {% if data.comments.total == 0 %}
+            {% include 'components/no-info.html' %}
+        {% else %}
+            {% include 'components/comentario.html' %}
+        {% endif %}        
+    </div>
+</div>

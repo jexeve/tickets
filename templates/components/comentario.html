@@ -1,0 +1,12 @@
+{% for comment in data.comments.data %}
+    <div class="col my-2">
+        <div class="card">
+            <div class="card-body px-2 py-1">
+                This is some text within a card body.
+            </div>
+            <div class="card-footer text-end px-2 py-1">
+                <small>Hecho por: {{ comment.0 }} {{ comment.1 }} el {{ comment.3.strftime('%Y-%m-%d %H:%M') }}</small>
+            </div>
+        </div>
+    </div>
+{% endfor %}
